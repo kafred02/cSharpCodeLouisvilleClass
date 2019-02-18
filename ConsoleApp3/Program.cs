@@ -6,8 +6,15 @@ namespace ConsoleApp3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.WriteLine("Hey");
+            EnergyCalculator ec = new EnergyCalculator();
+            Console.WriteLine("What is your monthly usage?");
+            ec.Usage = double.Parse(Console.ReadLine());
+            Console.WriteLine("Your total cost is " + ec.TotalCost);
+            Console.ReadKey();
+
+           
         }
     }
 }
+
+
