@@ -20,9 +20,10 @@ namespace ConsoleApp3
 
         public double TotalCost => EnergyChargeCost + EnergyEffiencyChargeCost + CustomerChargeCost + ECACost;
 
-
+        
 
 
 
     }
+    
 }
