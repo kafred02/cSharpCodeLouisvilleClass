@@ -21,44 +21,39 @@ namespace ConsoleApp3
             DirectoryInfo directory = new DirectoryInfo(currentDirectory);
             var fileName = Path.Combine(directory.FullName, "EnergyUsage.csv");
             var fileContents = ReadEnergyResults(fileName);
+            var fileEnergyResults = Path.Combine(directory.FullName, "fileEnergyResults.csv");
+
             //  var test = loadCsvFile();
-            foreach (var energyUsage in fileContents)
-            {
-                ec.Usage = energyUsage.EnergyUsage;
-                Console.WriteLine(ec.TotalCost);
-                
+            //using (var textWriter = new StreamWriter(@"C:\mypath\myfile.csv"))
+            //{
+            //var writer = new CsvWriter(textWriter);
+            //writer.Configuration.Delimiter = ",";
 
+
+            using (var w = new StreamWriter(fileEnergyResults))
+            { 
+                //check to see if file exist
+                if(fileEnergyResults != null)
+
+                foreach (var energyUsage in fileContents)
+                {
+                    ec.Usage = energyUsage.EnergyUsage;
+
+                    w.WriteLine(ec.Usage);
+                    w.Flush();
+
+                    Console.WriteLine(ec.TotalCost);
+
+
+                }
             }
+
             Console.ReadKey();
-
-
-
-
-
-            //Console.WriteLine("What is your monthly usage?");
-            //ec.Usage = double.Parse(Console.ReadLine());
-            //Console.WriteLine("Your total cost is " + ec.TotalCost);
-            //Console.ReadKey();
-
-
-            //Basic way to pull information 
-            //System.IO.File.ReadAllLines ("file.csv")
 
 
         }
 
-        //public static List<string> loadCsvFile()
-        //{
-        //    var reader = new StreamReader(File.OpenRead("C:\\Users\\elek0\\source\\repos\\cSharpCodeLouisvilleClass\\ConsoleApp3\\EnergyUsage.csv"));
-        //    List<string> searchList = new List<string>();
-        //    while (!reader.EndOfStream)
-        //    {
-        //        var line = reader.ReadLine();
-        //        searchList.Add(line);
-        //    }
-        //    return searchList;
-        //}
-    
+ 
 
     public static string ReadFile(string fileName)
         {
@@ -67,8 +62,6 @@ namespace ConsoleApp3
                 return reader.ReadToEnd();
             }
         }
-
-
 
 
         public static List<EnergyUsageProfile> ReadEnergyResults(string fileName)
@@ -97,4 +90,23 @@ namespace ConsoleApp3
     }
 }
 
+//Console.WriteLine("What is your monthly usage?");
+//ec.Usage = double.Parse(Console.ReadLine());
+//Console.WriteLine("Your total cost is " + ec.TotalCost);
+//Console.ReadKey();
 
+
+//Basic way to pull information 
+//System.IO.File.ReadAllLines ("file.csv")
+
+//public static List<string> loadCsvFile()
+//{
+//    var reader = new StreamReader(File.OpenRead("C:\\Users\\elek0\\source\\repos\\cSharpCodeLouisvilleClass\\ConsoleApp3\\EnergyUsage.csv"));
+//    List<string> searchList = new List<string>();
+//    while (!reader.EndOfStream)
+//    {
+//        var line = reader.ReadLine();
+//        searchList.Add(line);
+//    }
+//    return searchList;
+//}
