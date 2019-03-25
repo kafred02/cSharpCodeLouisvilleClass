@@ -26,7 +26,7 @@ namespace ConsoleApp3
             var fileEnergyResults = Path.Combine(directory.FullName, "fileEnergyResults.csv");
 
 
-            //start the console:
+            //starts the console:
 
             // Display title as the C# console calculator app
             Console.WriteLine("Welcome to the Energy Calculator\r");
@@ -35,7 +35,7 @@ namespace ConsoleApp3
             Console.ReadKey();
             MainMenu();
 
-
+            //Displays the main menu and rus the MainMenu based on the information the user utilizes.  
             void MainMenu()
             {
                 Console.WriteLine("");
@@ -56,7 +56,7 @@ namespace ConsoleApp3
                     switch (choice)
 
                     {
-
+                        //calculates the energy usage based on the input
                         case 1:
                             Console.WriteLine("Please type an energy usage");
                             
@@ -64,13 +64,15 @@ namespace ConsoleApp3
                             //Console.Write() = 
                             break;
                         //something for option 1
-
+                        //add usage to the csv file and calculate usage
                         case 2:
                             AddUsage();
                             MainMenu();
                             break;
                         //something for option 2
 
+
+                        //runs the usage in the 
                         case 3:
                             RunUsage();
                             MainMenu();
@@ -99,7 +101,7 @@ namespace ConsoleApp3
                 else
 
                 {
-
+                    //if nothing is entered then this is prompted to the user.
                     Console.WriteLine("You must type numeric value only!" +
 
                     Environment.NewLine + "Press any kay for exit");
@@ -111,6 +113,8 @@ namespace ConsoleApp3
             }
 
            
+
+            // Add usage to the csv file based on the inputs from the user.
             void AddUsage()
             {
 
@@ -139,6 +143,8 @@ namespace ConsoleApp3
                 //}
             }
 
+
+            // Runs the csv file to calculates column 4 the energy usage column, and populates the console with the results.
              void RunUsage(){
                 using (var w = new StreamWriter(fileEnergyResults))
                 {
@@ -185,7 +191,7 @@ namespace ConsoleApp3
             }
         }
 
-
+        // reads the csv file from column 3 of the energyusage file.
         public static List<EnergyUsageProfile> ReadEnergyResults(string fileName)
         {
             var energyResults = new List<EnergyUsageProfile>();

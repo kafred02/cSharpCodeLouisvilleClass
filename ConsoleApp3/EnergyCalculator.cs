@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+//Ths is the class that calculates energy usage based on the energyUsage from the CSV file, or the inputted file.
+
 namespace ConsoleApp3
 {
    public class EnergyCalculator
