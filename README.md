@@ -14,7 +14,6 @@ Total Energy = CustomerCharge + EnergyCharge + EnergyEfficiencyCharge + ECA;
 For example is Usage is 100 then the calculation will be $27.  
 
 $20 + (100 * .05) + (100 * .01) + (100 * .01) = $27
-$27
 
 Main Menu:
 
