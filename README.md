@@ -1,7 +1,7 @@
 # cSharpCodeLouisvilleClass
 This is my code louisville c# project
 
-This application is built with Visual Studio, dotnet, and C#. The application prompts a basic options for the user to calculate their energy usage.  Once the user types in an energy usage, or adds an energy usage to the 'EnergyUsage.csv' file then it performs a calculation to get a total energy cost.
+This application is built with Visual Studio, dotnet, and C#. The application prompts options for the user to calculate their energy usage.  Once the user types in an energy usage, or adds an energy usage to the 'EnergyUsage.csv' file then it performs a calculation to get a total energy cost.
 
 Energy Calculation:
 Customer Charge: Fixed Charge of $20
