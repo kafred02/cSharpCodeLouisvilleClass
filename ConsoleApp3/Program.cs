@@ -13,8 +13,10 @@ namespace ConsoleApp3
         static void Main(string[] args)
         {
             //Console.WriteLine("Would you like to 1: calculate a file 2: calcu");
-           //https://docs.microsoft.com/en-us/dotnet/api/system.consolekeyinfo?view=netframework-4.7.2
+            //https://docs.microsoft.com/en-us/dotnet/api/system.consolekeyinfo?view=netframework-4.7.2
 
+
+            //
 
             EnergyCalculator ec = new EnergyCalculator();
             string currentDirectory = Directory.GetCurrentDirectory();
@@ -24,7 +26,6 @@ namespace ConsoleApp3
             var fileEnergyResults = Path.Combine(directory.FullName, "fileEnergyResults.csv");
 
 
-
             //start the console:
 
             // Display title as the C# console calculator app
@@ -32,89 +33,149 @@ namespace ConsoleApp3
             Console.WriteLine("------------------------\n");
             Console.WriteLine("Please press any key");
             Console.ReadKey();
-
-            //int userInput = 0;
-            //do
-            //{
-            //    Console.Write() = int UserInput = 0;
-            //    userInput = MainMenu();
-            //} while (userInput != 5);
-
-            //char choice;
-
-            //for (;; )
-            //{
-            //    do
-            //    {
-            //        MainMenu();
-            //        do
-            //        {
-            //            choice = (char)Console.Read();
-            //        } while (choice == '\n' | choice == '\r');
-            //    } while (choice < '1' | choice > '8' & choice != 'q');
-
-            //    if (choice == 'q') break;
-
-            //    Console.WriteLine("\n");
+            MainMenu();
 
 
+            void MainMenu()
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Main Menu");
+                Console.WriteLine("1. Calculate Energy Usage");
+                Console.WriteLine("2. Add Energy Usage");
+                Console.WriteLine("3. Run CSV File with Energy Usage");
+                Console.WriteLine("4. Exit");
+
+
+                var ans = Console.ReadLine();
+
+                int choice = 0;
+
+                if (int.TryParse(ans, out choice))
+
+                {
+                    switch (choice)
+
+                    {
+
+                        case 1:
+                            Console.WriteLine("Please type an energy usage");
+                            
+                            
+                            //Console.Write() = 
+                            break;
+                        //something for option 1
+
+                        case 2:
+                            AddUsage();
+                            MainMenu();
+                            break;
+                        //something for option 2
+
+                        case 3:
+                            RunUsage();
+                            MainMenu();
+                            break;
+                        //something for option 3
+
+                        case 4:
+                            System.Environment.Exit(1);
+                            break;
+
+                        default:
+
+                            Console.WriteLine("Wrong selection!" +
+
+                          Environment.NewLine + "Press any key for exit");
+
+                            Console.ReadKey();
+
+                            MainMenu();
+                            break;
+
+                    }
+
+                }
+
+                else
+
+                {
+
+                    Console.WriteLine("You must type numeric value only!" +
+
+                    Environment.NewLine + "Press any kay for exit");
+
+                    Console.ReadKey();
+
+                }
+
+            }
+
+           
+            void AddUsage()
+            {
+
+                StreamWriter file2 = new StreamWriter(fileName, true);
+                Console.WriteLine("Please type in a first name");
+                string firstName = Console.ReadLine();
+                Console.WriteLine("Please type in a last name");
+                string lastName = Console.ReadLine();
+                Console.WriteLine("Please type in a date (MM/DD/YYYY)");
+                var Month = Console.ReadLine();
+                Console.WriteLine("Please type in an energy Usage");
+                string addEnergy = Console.ReadLine();
+
+
+                file2.WriteLine("" + firstName + "," + lastName + "," + Month + "," + addEnergy + "");
+                //file2.File.AppendAllText(newFileName, "text");
+                //file2.Appendtext("text name");
+                file2.Close();
+
+                //using (var newline = new StreamWriter(fileName));
+                //{
+                //    List<string> newLines = new List<string>();
+                //    newLines.Add("this is the new line....");
+
+                //    File.AppendAllLines("fileName", newLines);
+                //}
+            }
+
+             void RunUsage(){
                 using (var w = new StreamWriter(fileEnergyResults))
-            {
-                //check to see if file exist
-                if (!File.Exists(fileEnergyResults))
                 {
-                    using (var stream = File.Create(fileEnergyResults)) { }
+                    //check to see if file exist
+                    if (!File.Exists(fileEnergyResults))
+                    {
+                        using (var stream = File.Create(fileEnergyResults)) { }
 
+                    }
+
+                    foreach (var energyUsage in fileContents)
+                    {
+                        ec.Usage = energyUsage.EnergyUsage;
+                        double WUsage = ec.Usage;
+                        double WTotal = ec.TotalCost;
+
+                        string csvRow = string.Format("{0},{1}", WUsage, WTotal);
+                        w.WriteLine(csvRow);
+                        //w.WriteLine(ec.TotalCost);
+                        w.Flush();
+
+                        Console.WriteLine(ec.TotalCost);
+
+
+                    }
                 }
-
-                foreach (var energyUsage in fileContents)
-                {
-                    ec.Usage = energyUsage.EnergyUsage;
-                    double WUsage = ec.Usage;
-                    double WTotal = ec.TotalCost;
-
-                    string csvRow = string.Format("{0},{1}", WUsage, WTotal);
-                    w.WriteLine(csvRow);
-                    //w.WriteLine(ec.TotalCost);
-                    w.Flush();
-
-                    Console.WriteLine(ec.TotalCost);
-
-
-                }
-            }
-
-            Console.ReadKey();
-
-
-        }
-
-        public static void MainMenu()
-        {
-            Console.WriteLine("Main Menu");
-            Console.WriteLine("--------------------");
-            Console.WriteLine("[1] Calculate Energy Usage");
-            Console.WriteLine("[2] Add Energy Usage to CSV file");
-            Console.WriteLine("[3] Calculate ");
-            Console.WriteLine("[4] Exit the program");
-            Console.WriteLine("--------------------\n");
-            Console.WriteLine("Please select an option from 1-4\n");
-
-            string choice = Console.ReadLine();
-            int number;
-            bool result = Int32.TryParse(choice, out number);
-            if (result)
-            {
-                Console.Clear();
-               // SubMenu(number);
-            }
-            else
-            {
-                Console.WriteLine("Incorrect choice");
+                Console.WriteLine("Press any key to go back to the main menu");
+                Console.ReadKey();
+                MainMenu();
+                //
             }
         }
 
+        void EnergyUsageCalculator(int energyUsage) {
 
+
+        }
 
         public static string ReadFile(string fileName)
         {
@@ -151,23 +212,3 @@ namespace ConsoleApp3
     }
 }
 
-//Console.WriteLine("What is your monthly usage?");
-//ec.Usage = double.Parse(Console.ReadLine());
-//Console.WriteLine("Your total cost is " + ec.TotalCost);
-//Console.ReadKey();
-
-
-//Basic way to pull information 
-//System.IO.File.ReadAllLines ("file.csv")
-
-//public static List<string> loadCsvFile()
-//{
-//    var reader = new StreamReader(File.OpenRead("C:\\Users\\elek0\\source\\repos\\cSharpCodeLouisvilleClass\\ConsoleApp3\\EnergyUsage.csv"));
-//    List<string> searchList = new List<string>();
-//    while (!reader.EndOfStream)
-//    {
-//        var line = reader.ReadLine();
-//        searchList.Add(line);
-//    }
-//    return searchList;
-//}
